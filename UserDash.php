@@ -1,11 +1,12 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$db = "inventory_project";
-$port = 3307;
+session_start();
+$host = 'sql111.infinityfree.com';
+$user = 'if0_39247692';
+$password = '4UGwXKXVavDgAA'; // no password
+$database = 'if0_39247692_inventoryproject';
+$port = 3306;
 
-$conn = new mysqli($host, $user, $password, $db, $port);
+$conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
     $count = $_POST['Count'] ?? '';
 
     $image = $_FILES['image']['name'];
-    $target = "Product uploads/" . basename($image);
+    $target = "product uploads/" . basename($image);
     move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
     $stmt = $conn->prepare("INSERT INTO staff_add_product (product_name, price, count, image) VALUES (?, ?, ?, ?)");
@@ -35,7 +36,7 @@ if (isset($_POST['finish'])) {
         $stmt->execute();
         $stmt->close();
     }
-    echo "<script>alert('Order completed and stock updated.'); window.location.href='StaffDash.php';</script>";
+    echo "<script>alert('Order completed and stock updated.'); window.location.href='staffdash.php';</script>";
     exit;
 }
 
@@ -58,7 +59,7 @@ $result = $conn->query("SELECT * FROM staff_add_product");
     <input type="text" id="searchBar" class="form-control" placeholder="Search for a product..." />
   </div>
 
-  <form id="orderForm" method="POST" action="StaffDash.php">
+  <form id="orderForm" method="POST" action="staffdash.php">
     <table class="table table-bordered text-center" id="productTable">
       <thead class="table-light">
         <tr>

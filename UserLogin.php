@@ -1,10 +1,11 @@
 <?php
+session_start();
 // DB Connection
-$host = 'localhost';
-$user = 'root';
-$password = ''; // no password
-$database = 'inventory_project';
-$port = 3307;
+$host = 'sql111.infinityfree.com';
+$user = 'if0_39247692';
+$password = '4UGwXKXVavDgAA'; // no password
+$database = 'if0_39247692_inventoryproject';
+$port = 3306;
 
 $conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_error) {
@@ -23,7 +24,7 @@ if (isset($_POST['log'])) {
 
     if ($result->num_rows === 1) {
         $_SESSION['user'] = $username;
-        echo "<script>window.location.href='UserDash.php';</script>";
+        echo "<script>window.location.href='userdash.php';</script>";
         exit();
     } else {
         echo "<script>alert('Invalid Username or Password');</script>";
@@ -59,7 +60,7 @@ if (isset($_POST['log'])) {
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="login-card">
       <h4 class="text-center mb-4">User Login</h4>
-      <form action="UserDash.php" method="POST">
+      <form action="userdash.php" method="POST">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="text" class="form-control" id="username" name="user" required />

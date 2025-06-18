@@ -1,11 +1,12 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$db = "inventory_project";
-$port = 3307;
+session_start();
+$host = 'sql111.infinityfree.com';
+$user = 'if0_39247692';
+$password = '4UGwXKXVavDgAA'; // no password
+$database = 'if0_39247692_inventoryproject';
+$port = 3306;
 
-$conn = new mysqli($host, $user, $password, $db, $port);
+$conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -82,7 +83,7 @@ $result = $conn->query($sql);
   <!-- Modal for Add New Staff -->
   <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form action="ManagerDash.php" method="POST" class="modal-content" id="staffForm" enctype="multipart/form-data">
+      <form action="managerdash.php" method="POST" class="modal-content" id="staffForm" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title">Add New Employee</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

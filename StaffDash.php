@@ -1,11 +1,13 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$db = "inventory_project";
-$port = 3307;
+session_start();
 
-$conn = new mysqli($host, $user, $password, $db, $port);
+$host = 'sql111.infinityfree.com';
+$user = 'if0_39247692';
+$password = '4UGwXKXVavDgAA'; // no password
+$database = 'if0_39247692_inventoryproject';
+$port = 3306;
+
+$conn = new mysqli($host, $user, $password, $database, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -21,7 +23,7 @@ if (isset($_POST['submit'])) {
     $image_path = '';
 
     if (!empty($image)) {
-        $target = "Product uploads/" . basename($image);
+        $target = "product uploads/" . basename($image);
         move_uploaded_file($_FILES['image']['tmp_name'], $target);
         $image_path = $image;
     }
@@ -83,7 +85,7 @@ $result = $conn->query($sql);
   <!-- Modal -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="modal-content" id="productForm" action="StaffDash.php" method="POST" enctype="multipart/form-data">
+      <form class="modal-content" id="productForm" action="staffdash.php" method="POST" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -123,7 +125,7 @@ $result = $conn->query($sql);
       <div class="col-sm-6 col-md-4 col-lg-3 mb-2 gx-1 gy-1">
         <div class="card" style="max-width: 250px; margin: start;">
           <?php if (!empty($row['image'])): ?>
-            <img src="Product uploads/<?php echo htmlspecialchars($row['image']); ?>" 
+            <img src="product uploads/<?php echo htmlspecialchars($row['image']); ?>" 
                  class="card-img-top" alt="Product Image" 
                  style="height: 150px; object-fit: cover;">
           <?php else: ?>
